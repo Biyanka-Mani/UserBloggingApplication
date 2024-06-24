@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
   end
   def require_same_user
     if current_user != @comment.user &&  !current_user.is_admin? && current_user !=@article.user 
-        flash[:alert]="You can Edit or Delete Your Own Comments Only"
+        flash[:alert]="You are Not Authorized to do that Action!"
         redirect_to root_path
     end
   end
