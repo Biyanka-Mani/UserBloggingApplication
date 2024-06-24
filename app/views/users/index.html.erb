@@ -42,7 +42,7 @@
                             <%= link_to  "View Articles", user_path(user),class:"btn btn-xs fs-10 btn-bold btn-info" %>
                         <%end%>
                          
-                      <% if !user.is_admin %>
+                      <% if !user.is_admin  %>
                         <%=link_to "Delete", user_path(user), class:"btn btn-outline-danger",data: { 
                               turbo_method: :delete,
                               turbo_confirm: "Are you sure?"
