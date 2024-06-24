@@ -1,36 +1,82 @@
 <div class="container-flouid">
-  <nav class="navbar navbar-expand-lg bg-light">
+ <nav class="navbar navbar-expand-lg p-3" style="box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;">
+		<%= image_tag 'blogger-high-resolution-logo-transparent.png', class: 'img-fluid', alt: 'Free Frontend Logo', width:250 %>
     <div class="container">
-      <a class="navbar-brand" href="/">
-        <h3>Your Logo</h3>
-      </a>
+     
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Member</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Courses</a>
-          </li>
+      
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ms-auto">
 
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Blog</a>
-          </li>
+             
 
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Event</a>
-          </li>
+        <% if user_signed_in?%>
 
-        </ul>
-        <form class="">
-          <a class="btn btn-outline-primary mr-2" href="#">Login</a>
-          <a class="btn btn-outline-success" href="#">Become member</a>
-        </form>
+              <div class="nav-item ">
+                  <%= link_to root_path, class: "nav-link active fs-4 me-3" do %>
+                  <span class="me-1">Home</span>
+                  <i class="fas fa-home fs-5"></i>
+                  <%end%>
+              </div>
 
-      </div>
+                <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle fs-4 me-3" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="me-1"><%= current_user.first_name %></span>
+                    <i class="fa fa-user-circle fs-5"></i>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                    <li> <%= link_to  "Edit My Profile",edit_user_registration_path(current_user), class: 'dropdown-item' %></li>
+                    <li><%= link_to 'Profile', user_path(current_user), class: 'dropdown-item' %></li>
+                    
+                  </ul>
+                </div>
+
+
+              <div class="nav-item">
+                  <%= link_to  destroy_user_session_path ,class:"nav-link active fs-4 me-3", data: {
+                          turbo_method: :delete,
+                          turbo_confirm: "Are you sure?"
+                        }  do %>Logout
+                      <i class="fa fa-sign-out fs-5"></i>
+                  <%end%>
+              </div>
+          <%else%>
+           <div class="nav-item ">
+                  <%= link_to articles_path, class: "nav-link active fs-4 me-3" do %>
+                  <span class="me-1">Blogs</span>
+                  <i class="far fa-newspaper fs-5"></i>
+                  <%end%>
+              </div>
+              
+              <div class="nav-item ">
+                  <%= link_to  new_user_session_path, class: "nav-link active fs-4 me-3" do %>
+                  <span class="me-1">Login</span>
+                  <i class="fas fa-sign-in-alt fs-5"></i>
+                  <%end%>
+              </div>
+              
+              <div class="nav-item ">
+                  <%= link_to new_user_registration_path, class: "nav-link active fs-4 me-3" do %>
+                  <span class="me-1">SignUp</span>
+                  <i class="fas fa-user-plus fs-5"></i>
+                  <%end%>
+              </div>
+
+
+
+
+          <%end%>
+          
+          </ul>
+        </div>
+      
+
+
+
+
     </div>
   </nav>
 </div>

@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <script src="https://cdn.tiny.cloud/1/by7gduu3so0mglv80n3d5xhatju3nzv7w83ff7e8zgv7940b/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag 'comment_form', 'data-turbolinks-track': 'reload' %>
     <%= javascript_importmap_tags %>
+   
+    
   </head>
 
   <body>
     <%= render 'layouts/navigation' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container">
+      <%= render 'shared/flashmessages' %>
+      <%= yield %>
+    </div>
      <%= render 'layouts/footer' %>
   </body>
 </html>

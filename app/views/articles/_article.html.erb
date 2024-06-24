@@ -1,0 +1,45 @@
+<% @articles.each do |article| %>
+
+		<div class="row mx-5">
+			
+			<div class="col-md-10 m-5 p-4 shadow">
+				<a class="text-primary fw-semibold text-decoration-none">
+                    <i class="fa fa-solid fa-user"></i>
+                    <% if article.user %>
+                        <%= article.user.first_name %>
+                    <% else %>
+                        Created By Unknown User
+                    <% end %>
+                    
+                    
+                </a>
+				<h2 class="fw-semibold my-2"><%= article.title%></h2>
+                <div class="py-2">
+                        <i class="fa fa-regular fa-clock"></i>
+                        Created <%=time_ago_in_words(article.created_at)%> ago
+                    </div>
+				
+				<p class="my-4"><%= truncate(article.description, length: 150) %>.
+                </p> 
+                <div class="row">
+                    <div class="col-sm-10"><%=link_to 'Read More' ,article_path(article),class:"btn btn-outline-primary" %></div>
+                    <div class="col-sm-2 text-danger">
+                         <%= "#{article.comments.count} Comments" %>
+                   
+                    </div>
+                </div>
+
+             
+					<p class="card-text py-2"><small class="text-muted">
+                         
+                        Edited <%=time_ago_in_words(article.updated_at)%> ago</small>
+                    </p>
+                   
+				
+			</div>
+
+        </div>
+ <% end %>
+ <div class="flickr_pagination mb-3">
+        <%= will_paginate @articles, :container => false %>
+</div>

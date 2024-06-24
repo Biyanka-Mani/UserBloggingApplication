@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/destroy'
+  get 'users/index'
+  get 'users/show'
   devise_for :users
-  
+  get "articles",to: "articles#index"
+  resources :users
+ resources :articles 
+ resources :articles do
+  resources :comments
+end
   get 'pages/home'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
