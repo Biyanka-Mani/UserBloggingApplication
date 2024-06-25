@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!,except:[:create]
    before_action :set_article
    before_action :set_comment,only:[:destroy,:edit,:update]
    before_action :require_same_user,only: [:edit,:update,:destroy]

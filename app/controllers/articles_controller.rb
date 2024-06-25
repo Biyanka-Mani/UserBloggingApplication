@@ -1,8 +1,9 @@
 class ArticlesController < ApplicationController
-    before_action :find_article,only: [:show,:edit,:update,:destroy]
-    before_action :require_user,except: [:show,:index]
-    before_action :require_same_user,only: [:edit,:update,:destroy]
     before_action :authenticate_user!, except: [:index, :show]
+    before_action :find_article,only: [:show,:edit,:update,:destroy]
+    
+    before_action :require_same_user,only: [:edit,:update,:destroy]
+   
     def index
         @articles=Article.paginate(page: params[:page], per_page: 5) 
 
@@ -58,10 +59,5 @@ class ArticlesController < ApplicationController
             redirect_to articles_path(@articles)
         end
     end
-    def require_user
-        if !user_signed_in?
-            flash[:alert]="You must be logged in to perform that action!"
-            redirect_to user_session_path
-        end
-    end
+    
 end

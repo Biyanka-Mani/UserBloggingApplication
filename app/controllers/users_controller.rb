@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_user,only: [:show]
   before_action :require_admin, only: [:destroy,:index]
   def index

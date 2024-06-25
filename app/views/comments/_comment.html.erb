@@ -26,9 +26,10 @@
                                 <%= link_to article_comment_path(@article, comment),class:"text-dark text-decoration-none me-3", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
                                     <i class="fas fa-trash-alt "></i> Delete
                                 <% end %>
-                                
-                                <%= link_to edit_article_comment_path(@article, comment),class:"text-dark text-decoration-none me-3" do %>
-                                    <i class="fas fa-edit"></i> Edit
+                                 <% if (current_user.id == comment.user_id) %>
+                                    <%= link_to edit_article_comment_path(@article, comment),class:"text-dark text-decoration-none me-3" do %>
+                                        <i class="fas fa-edit"></i> Edit
+                                    <% end %>
                                 <% end %>
                             <%end%>
                             <%end%>
